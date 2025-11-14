@@ -3,7 +3,7 @@ import { Database } from "bun:sqlite";
 
 const db = new Database("leader-board.sqlite");
 const app = express();
-const port = 3000;
+const port = 3004;
 
 app.use(express.json()); // <- WICHTIG
 
@@ -31,6 +31,9 @@ app.get("/", (request, response) => {
   response.send(data);
 });
 
+app.get("/test", (request, response) => {
+  response.send("get Works!");
+});
 app.get("/score", (request, response) => {
   if (userExists(request.body.id)) {
     const data = db
@@ -70,4 +73,4 @@ app.post("/users", (request, response) => {
   response.send({ id });
 });
 
-app.listen(port, () => console.log(`listening on port: ${port}`));
+app.listen(port,"0.0.0.0" () => console.log(`listening on port: ${port}`));
