@@ -1,8 +1,10 @@
 import express, { request, response } from "express";
 import { Database } from "bun:sqlite";
+import cors from "cors";
 
 const db = new Database("leader-board.sqlite");
 const app = express();
+app.use(cors);
 const port = 3004;
 
 app.use(express.json()); // <- WICHTIG
@@ -73,4 +75,4 @@ app.post("/users", (request, response) => {
   response.send({ id });
 });
 
-app.listen(port,"0.0.0.0" () => console.log(`listening on port: ${port}`));
+app.listen(port, "0.0.0.0", () => console.log(`listening on port: ${port}`));
